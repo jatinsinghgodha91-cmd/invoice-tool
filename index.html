@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Professional Invoice Generator</title>
+<style>
+:root{--ink:#1f2937;--muted:#6b7280;--accent:#4f46e5;--line:#e5e7eb;--bg:#f3f4f6}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--bg)}
+.wrap{max-width:900px;margin:24px auto;background:#fff;padding:32px;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;margin-bottom:24px}
+h1{margin:0;font-size:30px;letter-spacing:3px;color:var(--accent)}
+.sub{color:var(--muted);font-size:13px;margin-top:4px}
+.meta{min-width:260px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.card{border:1px solid var(--line);border-radius:10px;padding:16px}
+.card h3{margin:0 0 8px;font-size:14px;color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+label{display:block;font-size:12px;color:var(--muted);margin:8px 0 4px}
+input,textarea{width:100%;padding:8px 10px;border:1px solid #d1d5db;border-radius:6px;font-size:14px;font-family:inherit;background:#fff}
+textarea{min-height:60px;resize:vertical}
+table{width:100%;border-collapse:collapse;margin-top:8px}
+th{background:var(--accent);color:#fff;text-align:left;padding:10px;font-size:13px}
+th.num,td.num{text-align:right}
+td{border-bottom:1px solid var(--line);padding:6px}
+td input{border:none;padding:6px;background:transparent}
+td input:focus{outline:1px solid var(--accent);background:#fff}
+.btn{background:var(--accent);color:#fff;border:none;padding:10px 16px;border-radius:6px;cursor:pointer;font-size:14px}
+.btn.light{background:#e0e7ff;color:var(--accent)}
+.btn.danger{background:#fee2e2;color:#b91c1c;padding:6px 10px}
+.bar{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;align-items:center}
+.adjust{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.totals{margin-left:auto;width:340px;margin-top:16px}
+.row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+.row.grand{font-weight:bold;font-size:18px;color:var(--accent);border-bottom:none}
+.footer{margin-top:28px;color:var(--muted);font-size:13px;text-align:center}
+@media (max-width:640px){.grid,.adjust{grid-template-columns:1fr}.totals{width:100%}}
+@media print{
+  body{background:#fff}
+  .wrap{box-shadow:none;margin:0;padding:0;max-width:100%}
+  .no-print{display:none!important}
+  input,textarea{border:none;padding:2px 0;background:transparent}
+  td input{padding:2px}
+  .card{border:none;padding:0}
+  th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div>
+      <h1>INVOICE</h1>
+      <div class="sub">Professional invoice generator</div>
+    </div>
+    <div class="meta">
+      <label>Invoice No.</label>
+      <input id="invNo" data-save>
+      <label>Issue Date</label>
+      <input id="issueDate" type="date" data-save>
+      <label>Due Date</label>
+      <input id="dueDate" type="date" data-save>
+      <label>Currency Symbol</label>
+      <input id="currency" data-save value="$">
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h3>From</h3>
+      <label>Business / Name</label>
+      <input id="bizName" data-save placeholder="Your business name">
+      <label>Email</label>
+      <input id="bizEmail" type="email" data-save placeholder="you@example.com">
+      <label>Phone</label>
+      <input id="bizPhone" data-save placeholder="+1 000 000 0000">
+      <label>Address</label>
+      <textarea id="bizAddress" data-save placeholder="Street, City, Country"></textarea>
+    </div>
+    <div class="card">
+      <h3>Bill To</h3>
+      <label>Client Name</label>
+      <input id="clientName" data-save placeholder="Client name or company">
+      <label>Email</label>
+      <input id="clientEmail" type="email" data-save placeholder="client@example.com">
+      <label>Address</label>
+      <textarea id="clientAddress" data-save placeholder="Client address"></textarea>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Items</h3>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:46%">Description</th>
+          <th class="num" style="width:12%">Qty</th>
+          <th class="num" style="width:16%">Rate</th>
+          <th class="num" style="width:18%">Amount</th>
+          <th class="no-print" style="width:8%"></th>
+        </tr>
+      </thead>
+      <tbody id="items"></tbody>
+    </table>
+    <div class="bar no-print">
+      <button id="addItem" class="btn light" type="button">+ Add item</button>
+    </div>
+
+    <div class="adjust">
+      <div>
+        <label>Discount (%)</label>
+        <input id="discount" type="number" min="0" step="0.01" value="0" data-save>
+      </div>
+      <div>
+        <label>Tax (%)</label>
+        <input id="tax" type="number" min="0" step="0.01" value="0" data-save>
+      </div>
+    </div>
+
+    <div class="totals">
+      <div class="row"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
+      <div class="row"><span id="discLabel">Discount (0%)</span><span id="discAmt">$0.00</span></div>
+      <div class="row"><span id="taxLabel">Tax (0%)</span><span id="taxAmt">$0.00</span></div>
+      <div class="row grand"><span>Total Due</span><span id="grand">$0.00</span></div>
+    </div>
+  </div>
+
+  <div class="grid" style="margin-top:16px">
+    <div class="card">
+      <h3>Payment Details</h3>
+      <textarea id="payment" data-save placeholder="Bank name, account no., UPI, PayPal, etc."></textarea>
+    </div>
+    <div class="card">
+      <h3>Notes</h3>
+      <textarea id="notes" data-save>Thank you for your business. Please pay by the due date.</textarea>
+    </div>
+  </div>
+
+  <div class="bar no-print" style="justify-content:flex-end">
+    <button id="clearBtn" class="btn light" type="button">Clear all</button>
+    <button id="printBtn" class="btn" type="button">Print / Save as PDF</button>
+  </div>
+
+  <div class="footer">Generated with Professional Invoice Generator</div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const tbody = $('items');
+const SAVE_KEY = 'invoice-draft-v1';
+
+function money(n){
+  const sym = $('currency').value || '$';
+  return sym + (Number(n) || 0).toFixed(2);
+}
+
+function field(type, value, cls){
+  const i = document.createElement('input');
+  i.type = type;
+  i.value = value;
+  if (cls) i.className = cls;
+  if (type === 'number') { i.min = '0'; i.step = 'any'; }
+  return i;
+}
+
+function cell(el){
+  const td = document.createElement('td');
+  td.appendChild(el);
+  return td;
+}
+
+function addRow(desc = '', qty = 1, rate = 0){
+  const tr = document.createElement('tr');
+  const del = document.createElement('button');
+  del.type = 'button';
+  del.textContent = '✕';
+  del.className = 'btn danger no-print';
+  del.onclick = () => { tr.remove(); recalc(); saveDraft(); };
+  const amt = document.createElement('td');
+  amt.className = 'num amount';
+  tr.append(
+    cell(field('text', desc)),
+    cell(field('number', qty, 'num')),
+    cell(field('number', rate, 'num')),
+    amt,
+    cell(del)
+  );
+  tbody.appendChild(tr);
+  recalc();
+}
+
+function recalc(){
+  let subtotal = 0;
+  [...tbody.rows].forEach(tr => {
+    const q = parseFloat(tr.cells[1].querySelector('input').value) || 0;
+    const r = parseFloat(tr.cells[2].querySelector('input').value) || 0;
+    const line = q * r;
+    subtotal += line;
+    tr.querySelector('.amount').textContent = money(line);
+  });
+  const discPct = parseFloat($('discount').value) || 0;
+  const taxPct = parseFloat($('tax').value) || 0;
+  const disc = subtotal * discPct / 100;
+  const tax = (subtotal - disc) * taxPct / 100;
+  const total = subtotal - disc + tax;
+
+  $('subtotal').textContent = money(subtotal);
+  $('discLabel').textContent = `Discount (${discPct}%)`;
+  $('discAmt').textContent = '- ' + money(disc);
+  $('taxLabel').textContent = `Tax (${taxPct}%)`;
+  $('taxAmt').textContent = money(tax);
+  $('grand').textContent = money(total);
+}
+
+function saveDraft(){
+  const data = {};
+  document.querySelectorAll('[data-save]').forEach(el => data[el.id] = el.value);
+  data._items = [...tbody.rows].map(tr => ({
+    d: tr.cells[0].querySelector('input').value,
+    q: tr.cells[1].querySelector('input').value,
+    r: tr.cells[2].querySelector('input').value
+  }));
+  localStorage.setItem(SAVE_KEY, JSON.stringify(data));
+}
+
+function loadDraft(){
+  let data = {};
+  try { data = JSON.parse(localStorage.getItem(SAVE_KEY) || '{}'); } catch (e) { data = {}; }
+  Object.entries(data).forEach(([id, val]) => {
+    if (id === '_items') return;
+    const el = $(id);
+    if (el) el.value = val;
+  });
+  tbody.innerHTML = '';
+  if (Array.isArray(data._items) && data._items.length) {
+    data._items.forEach(it => addRow(it.d, it.q, it.r));
+  } else {
+    addRow('Service description', 1, 0);
+  }
+}
+
+document.addEventListener('input', () => { recalc(); saveDraft(); });
+
+$('addItem').onclick = () => { addRow('', 1, 0); saveDraft(); };
+$('printBtn').onclick = () => window.print();
+$('clearBtn').onclick = () => {
+  if (confirm('Saara data delete karna hai?')) {
+    localStorage.removeItem(SAVE_KEY);
+    location.reload();
+  }
+};
+
+function init(){
+  loadDraft();
+  if (!$('issueDate').value) $('issueDate').value = new Date().toISOString().slice(0, 10);
+  if (!$('dueDate').value) {
+    const d = new Date();
+    d.setDate(d.getDate() + 14);
+    $('dueDate').value = d.toISOString().slice(0, 10);
+  }
+  if (!$('invNo').value) $('invNo').value = 'INV-' + String(Date.now()).slice(-6);
+  recalc();
+  saveDraft();
+}
+init();
+</script>
+</body>
+</html>

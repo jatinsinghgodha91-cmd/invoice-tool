@@ -3,92 +3,120 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Free Professional Invoice Generator | Create & Print Invoices Online</title>
-<meta name="description" content="Free online invoice generator for freelancers and small businesses. Add items, tax and discount, then print or save as PDF. No signup needed.">
-<meta name="keywords" content="invoice generator, free invoice, freelancer invoice, invoice template, print invoice">
+<title>Free Invoice Generator | Create Professional Invoices Online</title>
+<meta name="description" content="Free online invoice generator for freelancers and small businesses. Add your details, items, tax and discount, then print or save as PDF. No signup needed.">
 <meta name="robots" content="index, follow">
-
 <style>
-:root{--ink:#1f2937;--muted:#6b7280;--accent:#4f46e5;--accent2:#7c3aed;--line:#e5e7eb;--bg:#eef2ff}
+:root{--accent:#4f46e5;--accent2:#7c3aed;--ink:#111827;--muted:#6b7280;--line:#e5e7eb;--soft:#f5f3ff}
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:linear-gradient(180deg,#eef2ff,#f8fafc 40%,#f3f4f6)}
-.header{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;padding:18px 20px}
-.header-inner{max-width:1000px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
-.brand{font-size:20px;font-weight:bold;letter-spacing:1px}
-.brand small{display:block;font-weight:normal;font-size:12px;opacity:.85;letter-spacing:0}
-.nav a{color:#fff;text-decoration:none;margin-left:16px;font-size:14px;opacity:.9}
+html,body{margin:0;padding:0}
+body{font-family:Inter,Segoe UI,Arial,Helvetica,sans-serif;color:var(--ink);background:linear-gradient(180deg,#eef2ff 0%,#f8fafc 45%,#f1f5f9 100%);min-height:100vh}
+a{color:var(--accent)}
+
+/* header */
+.topbar{background:linear-gradient(120deg,var(--accent),var(--accent2));color:#fff;padding:20px 16px;box-shadow:0 4px 20px rgba(79,70,229,.25)}
+.topbar-in{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.logo{font-size:22px;font-weight:800;letter-spacing:.5px}
+.logo small{display:block;font-size:12px;font-weight:400;opacity:.9;margin-top:2px}
+.nav a{color:#fff;text-decoration:none;margin-left:18px;font-size:14px;font-weight:600;opacity:.92}
 .nav a:hover{opacity:1;text-decoration:underline}
-.container{max-width:1000px;margin:0 auto;padding:20px}
-.ad-slot{background:#fff;border:1px dashed #c7d2fe;border-radius:10px;text-align:center;color:#94a3b8;font-size:12px;padding:8px;margin:16px 0;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
-.ad-slot.side{margin:0 0 16px}
+
+/* hero */
+.hero{max-width:1100px;margin:24px auto 8px;padding:0 16px;text-align:center}
+.hero h1{margin:0 0 8px;font-size:30px;color:var(--ink)}
+.hero p{margin:0;color:var(--muted);font-size:15px}
+.steps{max-width:1100px;margin:18px auto;padding:0 16px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.step{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:0 4px 14px rgba(0,0,0,.04)}
+.step b{display:inline-block;background:var(--accent);color:#fff;border-radius:50%;width:26px;height:26px;line-height:26px;text-align:center;font-size:13px;margin-bottom:8px}
+.step h3{margin:0 0 6px;font-size:15px}
+.step p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+
+/* ads */
+.ad{max-width:1100px;margin:14px auto;padding:0 16px;text-align:center}
+.ad-box{background:#fff;border:1px dashed #c7d2fe;border-radius:12px;padding:10px;min-height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .ad-label{font-size:10px;color:#a5b4fc;margin-bottom:4px}
-.wrap{background:#fff;padding:30px;border-radius:14px;box-shadow:0 6px 24px rgba(79,70,229,.10);border:1px solid #e0e7ff}
-.layout{display:grid;grid-template-columns:1fr 300px;gap:20px}
-.top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;margin-bottom:22px}
-h1{margin:0;font-size:30px;letter-spacing:3px;color:var(--accent)}
-.sub{color:var(--muted);font-size:13px;margin-top:4px}
+
+/* layout */
+.container{max-width:1100px;margin:0 auto;padding:0 16px 40px}
+.layout{display:grid;grid-template-columns:1fr 300px;gap:22px}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 6px 22px rgba(79,70,229,.06)}
+.card h3{margin:0 0 12px;font-size:13px;color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.inv-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;margin-bottom:18px}
+.inv-top h2{margin:0;font-size:32px;letter-spacing:4px;color:var(--accent)}
+.inv-top .sub{color:var(--muted);font-size:13px;margin-top:4px}
 .meta{min-width:260px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
-.card{border:1px solid var(--line);border-radius:10px;padding:16px;background:#fff}
-.card h3{margin:0 0 8px;font-size:13px;color:var(--accent);text-transform:uppercase;letter-spacing:1px}
-label{display:block;font-size:12px;color:var(--muted);margin:8px 0 4px}
-input,textarea{width:100%;padding:8px 10px;border:1px solid #d1d5db;border-radius:6px;font-size:14px;font-family:inherit;background:#fff}
-input:focus,textarea:focus{outline:2px solid #c7d2fe;border-color:var(--accent)}
-textarea{min-height:60px;resize:vertical}
-table{width:100%;border-collapse:collapse;margin-top:8px}
-th{background:var(--accent);color:#fff;text-align:left;padding:10px;font-size:13px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+label{display:block;font-size:12px;color:var(--muted);margin:10px 0 4px;font-weight:600}
+input,textarea{width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:10px;font-size:14px;font-family:inherit;background:#fff;transition:border .15s,box-shadow .15s}
+input:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px #e0e7ff}
+textarea{min-height:70px;resize:vertical}
+table{width:100%;border-collapse:collapse;margin-top:6px}
+th{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;text-align:left;padding:11px;font-size:13px}
 th.num,td.num{text-align:right}
 td{border-bottom:1px solid var(--line);padding:6px}
-td input{border:none;padding:6px;background:transparent}
-td input:focus{outline:1px solid var(--accent);background:#fff}
-.btn{background:var(--accent);color:#fff;border:none;padding:10px 16px;border-radius:6px;cursor:pointer;font-size:14px}
+td input{border:none;padding:8px;background:transparent;border-radius:8px}
+td input:focus{background:#fff;box-shadow:0 0 0 2px #c7d2fe}
+.btn{background:var(--accent);color:#fff;border:none;padding:11px 18px;border-radius:10px;cursor:pointer;font-size:14px;font-weight:600;transition:transform .1s,background .15s}
 .btn:hover{background:#4338ca}
-.btn.light{background:#e0e7ff;color:var(--accent)}
-.btn.light:hover{background:#c7d2fe}
+.btn:active{transform:scale(.98)}
+.btn.light{background:#eef2ff;color:var(--accent)}
+.btn.light:hover{background:#e0e7ff}
 .btn.danger{background:#fee2e2;color:#b91c1c;padding:6px 10px}
 .bar{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;align-items:center}
 .adjust{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
-.totals{margin-left:auto;width:340px;margin-top:16px;background:#f8fafc;padding:12px 16px;border-radius:10px}
-.row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
-.row.grand{font-weight:bold;font-size:18px;color:var(--accent);border-bottom:none}
-.footer{margin-top:28px;color:var(--muted);font-size:13px;text-align:center}
-.sidebar .card{margin-bottom:16px}
-.sidebar h4{margin:0 0 8px;font-size:13px;color:var(--accent)}
-.sidebar ul{padding-left:18px;margin:0;font-size:13px;color:var(--muted);line-height:1.7}
-.section-card h2{color:var(--accent);margin-top:0}
-.section-card p,.section-card li{color:var(--muted);line-height:1.7}
-@media (max-width:820px){.layout{grid-template-columns:1fr}.sidebar{display:none}}
-@media (max-width:640px){.grid,.adjust{grid-template-columns:1fr}.totals{width:100%}}
+.totals{margin-left:auto;width:360px;margin-top:18px;background:linear-gradient(180deg,#f8fafc,#eef2ff);padding:14px 18px;border-radius:14px;border:1px solid #e0e7ff}
+.row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #e5e7eb;font-size:14px}
+.row.grand{font-weight:800;font-size:19px;color:var(--accent);border-bottom:none;padding-top:12px}
+.sidebar .card{margin-bottom:18px}
+.sidebar h4{margin:0 0 8px;font-size:14px;color:var(--accent)}
+.sidebar ul{padding-left:18px;margin:0;font-size:13px;color:var(--muted);line-height:1.8}
+.sidebar p{font-size:13px;color:var(--muted);line-height:1.6;margin:0}
+.section{margin-top:22px}
+.section h2{margin:0 0 10px;color:var(--accent);font-size:22px}
+.section p,.section li{color:var(--muted);line-height:1.75;font-size:15px}
+.faq-item{margin-bottom:12px}
+.faq-item strong{color:var(--ink)}
+.footer{margin-top:30px;text-align:center;color:var(--muted);font-size:13px}
+
+@media (max-width:900px){.layout{grid-template-columns:1fr}.sidebar{display:none}.steps{grid-template-columns:1fr}}
+@media (max-width:640px){.grid2,.adjust{grid-template-columns:1fr}.totals{width:100%}.nav{display:none}}
 @media print{
   body{background:#fff}
-  .header,.ad-slot,.sidebar,.no-print{display:none!important}
+  .topbar,.hero,.steps,.ad,.sidebar,.section,.footer,.no-print{display:none!important}
   .layout{display:block}
-  .wrap{box-shadow:none;margin:0;padding:0;max-width:100%;border:none}
-  .container{padding:0}
+  .card{box-shadow:none;border:none;padding:0}
   input,textarea{border:none;padding:2px 0;background:transparent}
   td input{padding:2px}
-  .card{border:none;padding:0}
   th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 </style>
 </head>
 <body>
 
-<div class="header">
-  <div class="header-inner">
-    <div class="brand">AI Freelancer Toolkit<small>Free tools for freelancers & small businesses</small></div>
-    <div class="nav">
+<header class="topbar">
+  <div class="topbar-in">
+    <div class="logo">AI Freelancer Toolkit<small>Free tools for freelancers and small businesses</small></div>
+    <nav class="nav">
       <a href="#invoice">Invoice</a>
-      <a href="#tips">Tips</a>
+      <a href="#how">How to use</a>
       <a href="#faq">FAQ</a>
-    </div>
+    </nav>
   </div>
-</div>
+</header>
 
-<div class="container">
+<section class="hero">
+  <h1>Free Professional Invoice Generator</h1>
+  <p>Create, print and save invoices as PDF in under two minutes. No signup, nothing to install.</p>
+</section>
 
-  <!-- TOP BANNER 728x90 -->
-  <div class="ad-slot" style="min-height:90px">
+<section class="steps" id="how">
+  <div class="step"><b>1</b><h3>Enter your details</h3><p>Add your business name, email and address in the "From" box.</p></div>
+  <div class="step"><b>2</b><h3>Add your client and items</h3><p>Fill in the client details, then list each service with quantity and rate.</p></div>
+  <div class="step"><b>3</b><h3>Print or save as PDF</h3><p>Click "Print / Save as PDF" and choose Save as PDF in the print window.</p></div>
+</section>
+
+<div class="ad">
+  <div class="ad-box">
     <span class="ad-label">Advertisement</span>
     <script>
   atOptions = {
@@ -101,16 +129,43 @@ td input:focus{outline:1px solid var(--accent);background:#fff}
 </script>
 <script src="https://bauval.org/22/a18507e03dff55dc5e0c96cdd935cd1e"></script>
   </div>
+</div>
 
+<div class="container">
   <div class="layout">
     <main>
-      <div class="wrap" id="invoice">
+      <div class="card" id="invoice">
 
-        <div class="top">
+        <div class="inv-top">
           <div>
-            <h1>INVOICE</h1>
+            <h2>INVOICE</h2>
             <div class="sub">Professional invoice generator</div>
           </div>
           <div class="meta">
             <label>Invoice No.</label>
             <input id="invNo" data-save>
+            <label>Issue Date</label>
+            <input id="issueDate" type="date" data-save>
+            <label>Due Date</label>
+            <input id="dueDate" type="date" data-save>
+            <label>Currency Symbol</label>
+            <input id="currency" data-save value="$">
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="card" style="box-shadow:none;padding:16px">
+            <h3>From</h3>
+            <label>Business / Name</label>
+            <input id="bizName" data-save placeholder="Your business name">
+            <label>Email</label>
+            <input id="bizEmail" type="email" data-save placeholder="you@example.com">
+            <label>Phone</label>
+            <input id="bizPhone" data-save placeholder="+1 000 000 0000">
+            <label>Address</label>
+            <textarea id="bizAddress" data-save placeholder="Street, City, Country"></textarea>
+          </div>
+          <div class="card" style="box-shadow:none;padding:16px">
+            <h3>Bill To</h3>
+            <label>Client Name</label>
+            <input id="clientName" data-save

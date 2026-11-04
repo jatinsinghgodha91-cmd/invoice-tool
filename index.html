@@ -7,13 +7,11 @@
 <meta name="description" content="Free online invoice generator for freelancers and small businesses. Add your details, items, tax and discount, then print or save as PDF. No signup needed.">
 <meta name="robots" content="index, follow">
 <style>
-:root{--accent:#4f46e5;--accent2:#7c3aed;--ink:#111827;--muted:#6b7280;--line:#e5e7eb;--soft:#f5f3ff}
+:root{--accent:#4f46e5;--accent2:#7c3aed;--ink:#111827;--muted:#6b7280;--line:#e5e7eb}
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
-body{font-family:Inter,Segoe UI,Arial,Helvetica,sans-serif;color:var(--ink);background:linear-gradient(180deg,#eef2ff 0%,#f8fafc 45%,#f1f5f9 100%);min-height:100vh}
-a{color:var(--accent)}
+body{font-family:Inter,"Segoe UI",Arial,Helvetica,sans-serif;color:var(--ink);background:linear-gradient(180deg,#eef2ff 0%,#f8fafc 45%,#f1f5f9 100%);min-height:100vh}
 
-/* header */
 .topbar{background:linear-gradient(120deg,var(--accent),var(--accent2));color:#fff;padding:20px 16px;box-shadow:0 4px 20px rgba(79,70,229,.25)}
 .topbar-in{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
 .logo{font-size:22px;font-weight:800;letter-spacing:.5px}
@@ -21,9 +19,8 @@ a{color:var(--accent)}
 .nav a{color:#fff;text-decoration:none;margin-left:18px;font-size:14px;font-weight:600;opacity:.92}
 .nav a:hover{opacity:1;text-decoration:underline}
 
-/* hero */
 .hero{max-width:1100px;margin:24px auto 8px;padding:0 16px;text-align:center}
-.hero h1{margin:0 0 8px;font-size:30px;color:var(--ink)}
+.hero h1{margin:0 0 8px;font-size:30px}
 .hero p{margin:0;color:var(--muted);font-size:15px}
 .steps{max-width:1100px;margin:18px auto;padding:0 16px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .step{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:0 4px 14px rgba(0,0,0,.04)}
@@ -31,12 +28,11 @@ a{color:var(--accent)}
 .step h3{margin:0 0 6px;font-size:15px}
 .step p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
 
-/* ads */
 .ad{max-width:1100px;margin:14px auto;padding:0 16px;text-align:center}
-.ad-box{background:#fff;border:1px dashed #c7d2fe;border-radius:12px;padding:10px;min-height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ad-box{background:#fff;border:1px dashed #c7d2fe;border-radius:12px;padding:10px;min-height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
+.ad-box iframe{max-width:100%;display:block}
 .ad-label{font-size:10px;color:#a5b4fc;margin-bottom:4px}
 
-/* layout */
 .container{max-width:1100px;margin:0 auto;padding:0 16px 40px}
 .layout{display:grid;grid-template-columns:1fr 300px;gap:22px}
 .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 6px 22px rgba(79,70,229,.06)}
@@ -45,10 +41,12 @@ a{color:var(--accent)}
 .inv-top h2{margin:0;font-size:32px;letter-spacing:4px;color:var(--accent)}
 .inv-top .sub{color:var(--muted);font-size:13px;margin-top:4px}
 .meta{min-width:260px}
+.hint{font-size:11px;color:var(--muted);margin-top:4px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
 label{display:block;font-size:12px;color:var(--muted);margin:10px 0 4px;font-weight:600}
-input,textarea{width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:10px;font-size:14px;font-family:inherit;background:#fff;transition:border .15s,box-shadow .15s}
+input,textarea{width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:10px;font-size:14px;font-family:inherit;background:#fff}
 input:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px #e0e7ff}
+input[readonly]{background:#f9fafb;color:var(--accent);font-weight:700}
 textarea{min-height:70px;resize:vertical}
 table{width:100%;border-collapse:collapse;margin-top:6px}
 th{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;text-align:left;padding:11px;font-size:13px}
@@ -56,16 +54,15 @@ th.num,td.num{text-align:right}
 td{border-bottom:1px solid var(--line);padding:6px}
 td input{border:none;padding:8px;background:transparent;border-radius:8px}
 td input:focus{background:#fff;box-shadow:0 0 0 2px #c7d2fe}
-.btn{background:var(--accent);color:#fff;border:none;padding:11px 18px;border-radius:10px;cursor:pointer;font-size:14px;font-weight:600;transition:transform .1s,background .15s}
+.btn{background:var(--accent);color:#fff;border:none;padding:11px 18px;border-radius:10px;cursor:pointer;font-size:14px;font-weight:600}
 .btn:hover{background:#4338ca}
-.btn:active{transform:scale(.98)}
 .btn.light{background:#eef2ff;color:var(--accent)}
 .btn.light:hover{background:#e0e7ff}
 .btn.danger{background:#fee2e2;color:#b91c1c;padding:6px 10px}
 .bar{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;align-items:center}
 .adjust{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
 .totals{margin-left:auto;width:360px;margin-top:18px;background:linear-gradient(180deg,#f8fafc,#eef2ff);padding:14px 18px;border-radius:14px;border:1px solid #e0e7ff}
-.row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #e5e7eb;font-size:14px}
+.row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
 .row.grand{font-weight:800;font-size:19px;color:var(--accent);border-bottom:none;padding-top:12px}
 .sidebar .card{margin-bottom:18px}
 .sidebar h4{margin:0 0 8px;font-size:14px;color:var(--accent)}
@@ -116,18 +113,8 @@ td input:focus{background:#fff;box-shadow:0 0 0 2px #c7d2fe}
 </section>
 
 <div class="ad">
-  <div class="ad-box">
+  <div class="ad-box" id="ad-top">
     <span class="ad-label">Advertisement</span>
-    <script>
-  atOptions = {
-    'key' : 'a18507e03dff55dc5e0c96cdd935cd1e',
-    'format' : 'iframe',
-    'height' : 90,
-    'width' : 728,
-    'params' : {}
-  };
-</script>
-<script src="https://bauval.org/22/a18507e03dff55dc5e0c96cdd935cd1e"></script>
   </div>
 </div>
 
@@ -143,7 +130,8 @@ td input:focus{background:#fff;box-shadow:0 0 0 2px #c7d2fe}
           </div>
           <div class="meta">
             <label>Invoice No.</label>
-            <input id="invNo" data-save>
+            <input id="invNo" data-save readonly>
+            <div class="hint">Auto-generated. Click "New invoice" for the next number.</div>
             <label>Issue Date</label>
             <input id="issueDate" type="date" data-save>
             <label>Due Date</label>
@@ -168,4 +156,297 @@ td input:focus{background:#fff;box-shadow:0 0 0 2px #c7d2fe}
           <div class="card" style="box-shadow:none;padding:16px">
             <h3>Bill To</h3>
             <label>Client Name</label>
-            <input id="clientName" data-save
+            <input id="clientName" data-save placeholder="Client name or company">
+            <label>Email</label>
+            <input id="clientEmail" type="email" data-save placeholder="client@example.com">
+            <label>Address</label>
+            <textarea id="clientAddress" data-save placeholder="Client address"></textarea>
+          </div>
+        </div>
+
+        <h3 style="margin:16px 0 8px;font-size:13px;color:var(--accent);text-transform:uppercase;letter-spacing:1px">Items</h3>
+        <table>
+          <thead>
+            <tr>
+              <th style="width:46%">Description</th>
+              <th class="num" style="width:12%">Qty</th>
+              <th class="num" style="width:16%">Rate</th>
+              <th class="num" style="width:18%">Amount</th>
+              <th class="no-print" style="width:8%"></th>
+            </tr>
+          </thead>
+          <tbody id="items"></tbody>
+        </table>
+        <div class="bar no-print">
+          <button id="addItem" class="btn light" type="button">+ Add item</button>
+        </div>
+
+        <div class="adjust">
+          <div>
+            <label>Discount (%)</label>
+            <input id="discount" type="number" min="0" step="0.01" value="0" data-save>
+          </div>
+          <div>
+            <label>Tax (%)</label>
+            <input id="tax" type="number" min="0" step="0.01" value="0" data-save>
+          </div>
+        </div>
+
+        <div class="totals">
+          <div class="row"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
+          <div class="row"><span id="discLabel">Discount (0%)</span><span id="discAmt">$0.00</span></div>
+          <div class="row"><span id="taxLabel">Tax (0%)</span><span id="taxAmt">$0.00</span></div>
+          <div class="row grand"><span>Total Due</span><span id="grand">$0.00</span></div>
+        </div>
+
+        <div class="grid2" style="margin-top:20px">
+          <div>
+            <h3 style="font-size:13px;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin:0 0 8px">Payment Details</h3>
+            <textarea id="payment" data-save placeholder="Bank name, account number, UPI ID, PayPal, etc."></textarea>
+          </div>
+          <div>
+            <h3 style="font-size:13px;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin:0 0 8px">Notes</h3>
+            <textarea id="notes" data-save>Thank you for your business. Please pay by the due date.</textarea>
+          </div>
+        </div>
+
+        <div class="ad no-print" style="padding:0;margin:20px 0 0">
+          <div class="ad-box" id="ad-middle">
+            <span class="ad-label">Advertisement</span>
+          </div>
+        </div>
+
+        <div class="bar no-print" style="justify-content:flex-end">
+          <button id="newBtn" class="btn light" type="button">New invoice</button>
+          <button id="clearBtn" class="btn light" type="button">Clear all</button>
+          <button id="printBtn" class="btn" type="button">Print / Save as PDF</button>
+        </div>
+      </div>
+
+      <section class="card section" id="tips">
+        <h2>Tips for getting paid faster</h2>
+        <ul>
+          <li>Always add a clear due date. Clients pay faster when the deadline is visible.</li>
+          <li>Write each service in one clear line, so the client knows what they are paying for.</li>
+          <li>Double-check your bank or UPI details before sending.</li>
+          <li>Save a copy of every invoice, so your records stay organized.</li>
+        </ul>
+      </section>
+
+      <section class="card section" id="faq">
+        <h2>Frequently asked questions</h2>
+        <div class="faq-item"><strong>Is this tool free?</strong><br>Yes. You can create and print invoices without any signup or payment.</div>
+        <div class="faq-item"><strong>Is my data stored on a server?</strong><br>No. Your details are saved only in your own browser on this device.</div>
+        <div class="faq-item"><strong>What is the Invoice No.?</strong><br>A unique number for each bill, such as INV-001. It is created automatically. Click "New invoice" to start the next one.</div>
+        <div class="faq-item"><strong>Can I save the invoice as a PDF?</strong><br>Yes. Click Print / Save as PDF and choose "Save as PDF" in the print window.</div>
+        <div class="faq-item"><strong>Can I change the currency?</strong><br>Yes. Type any symbol in the Currency Symbol box, such as $, Rs, €, or £.</div>
+      </section>
+
+      <div class="ad" style="padding:0;margin-top:20px">
+        <div class="ad-box" id="ad-bottom">
+          <span class="ad-label">Advertisement</span>
+        </div>
+      </div>
+
+      <div class="footer">© 2026 AI Freelancer Toolkit. Free invoice generator for everyone.</div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="card">
+        <h4>Quick tips</h4>
+        <ul>
+          <li>Each bill gets its own invoice number</li>
+          <li>The default due date is 14 days from today</li>
+          <li>Print a copy before sending</li>
+        </ul>
+      </div>
+
+      <div class="ad" style="padding:0;margin-bottom:18px">
+        <div class="ad-box" id="ad-side-1">
+          <span class="ad-label">Advertisement</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h4>About this tool</h4>
+        <p>A simple, free invoice generator that runs in your browser. No signup, no server, no data sharing.</p>
+      </div>
+
+      <div class="ad" style="padding:0">
+        <div class="ad-box" id="ad-side-2">
+          <span class="ad-label">Advertisement</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<script>
+const AD_728 = 'a18507e03dff55dc5e0c96cdd935cd1e';
+const AD_300 = '56877b01d98c576d1c63b3cf3be4568f';
+
+function mountAd(id, key, w, h){
+  const box = document.getElementById(id);
+  if (!box) return;
+  const f = document.createElement('iframe');
+  f.width = w;
+  f.height = h;
+  f.frameBorder = 0;
+  f.scrolling = 'no';
+  f.style.border = '0';
+  f.style.maxWidth = '100%';
+  f.srcdoc = '<!doctype html><html><head><meta charset="utf-8"></head>' +
+    '<body style="margin:0;display:flex;justify-content:center;background:transparent">' +
+    '<script>atOptions={\'key\':\'' + key + '\',\'format\':\'iframe\',\'height\':' + h + ',\'width\':' + w + ',\'params\':{}};<\/script>' +
+    '<script src="https://bauval.org/22/' + key + '"><\/script>' +
+    '</body></html>';
+  box.appendChild(f);
+}
+
+const $ = id => document.getElementById(id);
+const tbody = $('items');
+const SAVE_KEY = 'invoice-draft-v2';
+const COUNTER_KEY = 'invoice-counter-v1';
+
+function getCounter(){
+  const n = parseInt(localStorage.getItem(COUNTER_KEY) || '1', 10);
+  return isNaN(n) || n < 1 ? 1 : n;
+}
+function invoiceNumber(n){
+  return 'INV-' + String(n).padStart(3, '0');
+}
+
+function money(n){
+  const sym = $('currency').value || '$';
+  return sym + (Number(n) || 0).toFixed(2);
+}
+
+function field(type, value, cls){
+  const i = document.createElement('input');
+  i.type = type;
+  i.value = value;
+  if (cls) i.className = cls;
+  if (type === 'number') { i.min = '0'; i.step = 'any'; }
+  return i;
+}
+
+function cell(el){
+  const td = document.createElement('td');
+  td.appendChild(el);
+  return td;
+}
+
+function addRow(desc = '', qty = 1, rate = 0){
+  const tr = document.createElement('tr');
+  const del = document.createElement('button');
+  del.type = 'button';
+  del.textContent = '✕';
+  del.className = 'btn danger no-print';
+  del.onclick = () => { tr.remove(); recalc(); saveDraft(); };
+  const amt = document.createElement('td');
+  amt.className = 'num amount';
+  tr.append(
+    cell(field('text', desc)),
+    cell(field('number', qty, 'num')),
+    cell(field('number', rate, 'num')),
+    amt,
+    cell(del)
+  );
+  tbody.appendChild(tr);
+  recalc();
+}
+
+function recalc(){
+  let subtotal = 0;
+  [...tbody.rows].forEach(tr => {
+    const q = parseFloat(tr.cells[1].querySelector('input').value) || 0;
+    const r = parseFloat(tr.cells[2].querySelector('input').value) || 0;
+    const line = q * r;
+    subtotal += line;
+    tr.querySelector('.amount').textContent = money(line);
+  });
+  const discPct = parseFloat($('discount').value) || 0;
+  const taxPct = parseFloat($('tax').value) || 0;
+  const disc = subtotal * discPct / 100;
+  const tax = (subtotal - disc) * taxPct / 100;
+  const total = subtotal - disc + tax;
+
+  $('subtotal').textContent = money(subtotal);
+  $('discLabel').textContent = `Discount (${discPct}%)`;
+  $('discAmt').textContent = '- ' + money(disc);
+  $('taxLabel').textContent = `Tax (${taxPct}%)`;
+  $('taxAmt').textContent = money(tax);
+  $('grand').textContent = money(total);
+}
+
+function saveDraft(){
+  const data = {};
+  document.querySelectorAll('[data-save]').forEach(el => data[el.id] = el.value);
+  data._items = [...tbody.rows].map(tr => ({
+    d: tr.cells[0].querySelector('input').value,
+    q: tr.cells[1].querySelector('input').value,
+    r: tr.cells[2].querySelector('input').value
+  }));
+  try { localStorage.setItem(SAVE_KEY, JSON.stringify(data)); } catch (e) {}
+}
+
+function loadDraft(){
+  let data = {};
+  try { data = JSON.parse(localStorage.getItem(SAVE_KEY) || '{}'); } catch (e) { data = {}; }
+  Object.entries(data).forEach(([id, val]) => {
+    if (id === '_items') return;
+    const el = $(id);
+    if (el) el.value = val;
+  });
+  tbody.innerHTML = '';
+  if (Array.isArray(data._items) && data._items.length) {
+    data._items.forEach(it => addRow(it.d, it.q, it.r));
+  } else {
+    addRow('Service description', 1, 0);
+  }
+}
+
+function setDefaults(){
+  if (!$('invNo').value) $('invNo').value = invoiceNumber(getCounter());
+  if (!$('issueDate').value) $('issueDate').value = new Date().toISOString().slice(0, 10);
+  if (!$('dueDate').value) {
+    const d = new Date();
+    d.setDate(d.getDate() + 14);
+    $('dueDate').value = d.toISOString().slice(0, 10);
+  }
+}
+
+document.addEventListener('input', () => { recalc(); saveDraft(); });
+$('addItem').onclick = () => { addRow('', 1, 0); saveDraft(); };
+$('printBtn').onclick = () => window.print();
+
+$('newBtn').onclick = () => {
+  if (!confirm('Naya invoice shuru karein? Abhi ka data clear ho jayega.')) return;
+  const current = parseInt((($('invNo').value || '').match(/(\d+)/) || [])[1] || getCounter(), 10);
+  localStorage.setItem(COUNTER_KEY, String(current + 1));
+  try { localStorage.removeItem(SAVE_KEY); } catch (e) {}
+  location.reload();
+};
+
+$('clearBtn').onclick = () => {
+  if (confirm('Saara data delete karna hai?')) {
+    try { localStorage.removeItem(SAVE_KEY); } catch (e) {}
+    location.reload();
+  }
+};
+
+function init(){
+  loadDraft();
+  setDefaults();
+  recalc();
+  saveDraft();
+  mountAd('ad-top', AD_728, 728, 90);
+  mountAd('ad-middle', AD_300, 300, 250);
+  mountAd('ad-bottom', AD_728, 728, 90);
+  mountAd('ad-side-1', AD_300, 300, 250);
+  mountAd('ad-side-2', AD_300, 300, 250);
+}
+init();
+</script>
+</body>
+</html>

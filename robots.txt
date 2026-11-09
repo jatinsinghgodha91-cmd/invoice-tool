@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jatinsinghgodha91-cmd.github.io/invoice-tool/sitemap.xml
